@@ -1,0 +1,37 @@
+.note-wrapper {
+    display: inline-block;
+}
+
+.note-wrapper .note {
+    color:rgb(31, 31, 31);
+    margin: 30px;
+    width: 150px;
+    height: 150px;
+    background: rgb(216, 203, 21);
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.30);
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+.note-wrapper .note .title {
+    padding: 25px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.note-wrapper .note .arrow {
+    transform: scale(0.2);
+    margin-top: -45px;
+}
+
+.note-wrapper .note:hover .arrow {
+    animation: move-arrow 0.5s infinite alternate;
+  
+}
+
+@keyframes move-arrow {
+    0% { transform: translateY(0) scale(0.2); }
+    100% { transform: translateY(-8px) scale(0.2); }
+}
