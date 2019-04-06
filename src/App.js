@@ -82,8 +82,6 @@ class App extends Component {
     if (this.state.newNote) {
       newnote = <NotePopup
         editOn={editOn}
-        title='Placeholder'
-        text='Placeholder'
         save={this.saveNote}
         edit={this.toggleEditMode}
         delete={this.toggleNewNote}

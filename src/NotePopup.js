@@ -32,6 +32,7 @@ class NotePopup extends Component {
 
     const textarea = this.props.editOn ?
       <textarea
+        placeholder='Your notes...'
         readOnly={readOnly}
         className={'text ' + this.props.editOn}
         defaultValue={this.state.text}
@@ -39,13 +40,14 @@ class NotePopup extends Component {
       />
       :
       <ReactMarkdown className='text' source={this.state.text} />
-      
+
     return (
       <div className='note-popup-wrapper'>
         <span className='close' onClick={this.props.close}>&times;</span>
         <div className='note-popup'>
           <div>
             <input
+              placeholder='Title'
               readOnly={readOnly}
               className={'title ' + this.props.editOn}
               type="text"
