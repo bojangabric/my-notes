@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactMarkdown from 'react-markdown';
 import './NotePopup.css';
 
 class NotePopup extends Component {
@@ -29,6 +30,16 @@ class NotePopup extends Component {
       :
       <button className='edit' onClick={this.props.edit}>Edit</button>
 
+    const textarea = this.props.editOn ?
+      <textarea
+        readOnly={readOnly}
+        className={'text ' + this.props.editOn}
+        defaultValue={this.state.text}
+        onChange={e => this.updateText(e)}
+      />
+      :
+      <ReactMarkdown className='text' source={this.state.text} />
+      
     return (
       <div className='note-popup-wrapper'>
         <span className='close' onClick={this.props.close}>&times;</span>
@@ -46,14 +57,7 @@ class NotePopup extends Component {
               <button className='delete' onClick={() => this.props.delete(this.props.index)}>Delete</button>
             </span>
           </div>
-          <textarea
-            readOnly={readOnly}
-            className={'text ' + this.props.editOn}
-            defaultValue={this.state.text}
-            onChange={e => this.updateText(e)}
-          >
-          </textarea>
-          {/* <ReactMarkdown className='text' source={this.props.text} /> */}
+          {textarea}
         </div>
       </div>
     );
