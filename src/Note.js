@@ -7,27 +7,38 @@ class Note extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showNote: false,
-      editMode: false
+      showNote: false
     };
     this.toggleNote = this.toggleNote.bind(this);
-    this.toggleEditMode = this.toggleEditMode.bind(this);
-  }
-
-  toggleNote() {
-    this.setState({
-      showNote: !this.state.showNote
-    });
-  }
-
-  toggleEditMode() {
-    this.setState({
-      editMode: !this.state.editMode
-    });
+    this.saveNote = this.saveNote.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
   }
 
   shortenTitle(title) {
     return title.length > 5 ? title.substring(0, 5) + '...' : title;
+  }
+
+  toggleNote() {
+    if (this.props.editOn === 'edit-on')
+      this.props.edit();
+
+    this.setState({
+      showNote: !this.state.showNote
+    })
+  }
+
+  saveNote(state, index) {
+    this.props.save(state, index);
+    this.setState({
+      showNote: false
+    })
+  }
+
+  deleteNote(index) {
+    this.props.delete(index);
+    this.setState({
+      showNote: !this.state.showNote
+    })
   }
 
   render() {
@@ -42,23 +53,16 @@ class Note extends Component {
           </div>
         </div>
         {this.state.showNote ?
-          (
-            this.state.editMode ?
-              <NotePopup
-                className='edit-on'
-                title={this.props.title}
-                text={this.props.text}
-                close={this.toggleNote}
-                edit={this.toggleEditMode}
-              />
-              :
-              <NotePopup
-                title={this.props.title}
-                text={this.props.text}
-                close={this.toggleNote}
-                edit={this.toggleEditMode}
-              />
-          )
+          <NotePopup
+            editOn={this.props.editOn}
+            title={this.props.title}
+            text={this.props.text}
+            save={this.saveNote}
+            edit={this.props.edit}
+            delete={this.deleteNote}
+            close={this.toggleNote}
+            index={this.props.index}
+          />
           : null
         }
       </div>
