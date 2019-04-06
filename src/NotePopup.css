@@ -1,0 +1,97 @@
+.note-popup-wrapper {
+    position: fixed; /* Stay in place */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: scroll;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    z-index: 1;
+}
+
+.note-popup-wrapper .note-popup {
+    margin: auto;
+    padding: 10px 20px 0px 20px;
+    width: 1000px; /* Full width */
+    min-height: 650px; 
+    background: rgb(216, 203, 21);
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+.note-popup-wrapper .note-popup .title {
+    font-size: 32px;
+    font-weight: 600;
+    text-transform: uppercase;  
+}
+
+.note-popup-wrapper .note-popup .buttons {
+    float: right;
+}
+
+.note-popup-wrapper .note-popup .buttons button {
+    font-size: 18px;
+    margin: 10px;
+    border:none;
+    padding: 8px 25px 8px 25px;  
+    color: rgb(226, 224, 224);  
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.10);
+    cursor: pointer;
+}
+
+.note-popup-wrapper .note-popup .buttons .edit {
+    background: #334E68;
+    color: rgb(255, 255, 255);
+}
+
+.note-popup-wrapper .note-popup .buttons .delete {
+    background: rgb(226, 166, 166);
+    color: #334E68;
+}
+
+@keyframes btn-pop {
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.10);
+    }
+}
+
+.edit:active, .edit:focus, .delete:active, .delete:focus {
+    animation-name: btn-pop;
+    animation-duration: 0.3s;
+}
+
+.note-popup-wrapper .note-popup .text {
+    margin-top: 15px;
+    font-size: 24px;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+.note-popup-wrapper .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.note-popup-wrapper  .close:hover, .note-popup-wrapper  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .note-popup-wrapper  .note-popup {
+        width: 100%;
+    }
+}
