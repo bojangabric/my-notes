@@ -1,21 +1,59 @@
 import React, { Component } from 'react';
-import ReactMarkdown from 'react-markdown';
 import './NotePopup.css';
 
 class NotePopup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: this.props.title,
+      text: this.props.text
+    };
+  }
+
+  updateTitle(e) {
+    this.setState({
+      title: e.target.value
+    });
+  }
+
+  updateText(e) {
+    this.setState({
+      text: e.target.value
+    });
+  }
+
   render() {
+    const readOnly = this.props.editOn ? false : true;
+    const editBtn = this.props.editOn ?
+      <button className='save' onClick={() => this.props.save(this.state, this.props.index)}>Save</button>
+      :
+      <button className='edit' onClick={this.props.edit}>Edit</button>
+
     return (
       <div className='note-popup-wrapper'>
         <span className='close' onClick={this.props.close}>&times;</span>
-        <div className={'note-popup ' + this.props.className}>
-          <div className='title'>
-            {this.props.title}
+        <div className='note-popup'>
+          <div>
+            <input
+              readOnly={readOnly}
+              className={'title ' + this.props.editOn}
+              type="text"
+              value={this.state.title}
+              onChange={e => this.updateTitle(e)}
+            />
             <span className='buttons'>
-              <button className='edit' onClick={this.props.edit}>Edit</button>
-              <button className='delete'>Delete</button>
+              {editBtn}
+              <button className='delete' onClick={() => this.props.delete(this.props.index)}>Delete</button>
             </span>
           </div>
-          <ReactMarkdown className='text' source={this.props.text} />
+          <textarea
+            readOnly={readOnly}
+            className={'text ' + this.props.editOn}
+            defaultValue={this.state.text}
+            onChange={e => this.updateText(e)}
+          >
+          </textarea>
+          {/* <ReactMarkdown className='text' source={this.props.text} /> */}
         </div>
       </div>
     );
