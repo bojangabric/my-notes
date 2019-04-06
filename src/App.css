@@ -1,0 +1,17 @@
+.App .new-note {
+    display: block;
+    margin-top: 20px;
+    margin-left: 30px;
+    font-size: 18px;
+    border:none;
+    padding: 8px 25px 8px 25px;  
+    color: rgb(219, 219, 219);  
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.10);
+    cursor: pointer;
+    background:  #14919B;
+}
+
+.new-note:active, .new-note:focus {
+    animation-name: btn-pop;
+    animation-duration: 0.3s;
+}
