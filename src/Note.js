@@ -15,7 +15,7 @@ class Note extends Component {
   }
 
   shortenTitle(title) {
-    return title.length > 5 ? title.substring(0, 5) + '...' : title;
+    return title.length > 10 ? title.substring(0, 5) + '...' : title;
   }
 
   toggleNote() {
